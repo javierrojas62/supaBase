@@ -89,11 +89,33 @@ async function mostrarInscribe() {
     tablaContenido.innerHTML = html;
 }
 
+//prueba
+
+async function mostrarFuncion() {
+  const { data, error } = await supabase.rpc('get_intersect');
+  const tablaContenido = document.getElementById('tabla-contenido'); // usa siempre este contenedor
+  if (error) {
+    tablaContenido.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+    return;
+  }
+  if (data && data.length > 0) {
+    let html = `<h3>Resultado Función</h3><table class="table table-bordered">
+      <thead><tr><th>DNI</th><th>Nombre</th><th>apellido</th><th>Email</th><th>Legajo</th></tr></thead><tbody>`;
+    data.forEach(eq => {
+      html += `<tr>
+        <td>${eq.dni}</td><td>${eq.nombre}</td><td>${eq.apellido}</td>
+        <td>${eq.email}</td><td>${eq.legajo}</td>
+      </tr>`;
+    });
+    html += `</tbody></table>`;
+    tablaContenido.innerHTML = html;
+  } else {
+    tablaContenido.innerHTML = `<div class="alert alert-info">No hay resultados.</div>`;
+  }
+}
+
+
 window.mostrarAlumnos = mostrarAlumnos;;
 window.mostrarCursos = mostrarCursos;
 window.mostrarInscribe = mostrarInscribe;
-
-// Inicialización
-// window.onload = () => {
-//   mostrarInscribe();
-// };
+window.mostrarFuncion = mostrarFuncion;
