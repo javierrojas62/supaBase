@@ -18,7 +18,7 @@ async function mostrarAlumnos() {
         return;
     }
 
-    let html = `<h3>Alumnos</h3><table class="table table-bordered">
+    let html = `<h3>Alumnos</h3><table class="table table-bordered transparente">
       <thead><tr><th>DNI</th><th>Nombre</th><th>apellido</th><th>Email</th><th>Legajo</th></tr></thead><tbody>`;
 
     data.forEach(eq => {
